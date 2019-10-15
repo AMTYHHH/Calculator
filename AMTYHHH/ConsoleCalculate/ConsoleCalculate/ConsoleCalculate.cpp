@@ -14,11 +14,11 @@
 using namespace std;
 
 Calculator::Calculator() {}
-
+int flag = 0;
 string Calculator::MakeFormula() {
 	string formula = "";
 	srand((unsigned int)time(NULL));
-	int count = random(1, 3);
+	int count = random(1, 2);
 	int start = 0;
 	int number1 = random(1, 100);
 	formula += to_string(number1);
@@ -99,6 +99,8 @@ string Calculator::Solve(string formula) {
 			}
 			else if (peekChar == "/") {
 				calcStack->push(to_string(a1 / b1));
+				if (a1%b1)flag = 1;
+				cout << a1%b1 << endl;
 			}
 		}
 	}
@@ -107,12 +109,19 @@ string Calculator::Solve(string formula) {
 
 int main()
 {
-	Calculator* calc = new Calculator();
-	string question = calc->MakeFormula();
-	cout << question << endl;
-	//string ret = calc->Solve("11+22");
-	string ret = calc->Solve(question);
-	cout << ret << endl;
+	do {
+		flag = 0;
+		Calculator* calc = new Calculator();
+		string question = calc->MakeFormula();
+	
+		//string ret = calc->Solve("11+22");
+		string ret = calc->Solve(question);
+		//if(!flag){
+			cout << question << endl;
+			cout << ret << endl;//}
+	} while (flag);
+	
+	
 	getchar();
 }
 

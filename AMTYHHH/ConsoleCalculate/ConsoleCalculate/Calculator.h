@@ -11,6 +11,7 @@ using namespace std;
 class Calculator {
 private:
 	string op[4] = { "+", "-", "*", "/" };
+	//int flag = 0;
 public:
 	Calculator();
 	string MakeFormula();
