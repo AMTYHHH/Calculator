@@ -100,7 +100,7 @@ string Calculator::Solve(string formula) {
 			else if (peekChar == "/") {
 				calcStack->push(to_string(a1 / b1));
 				if (a1%b1)flag = 1;
-				cout << a1%b1 << endl;
+				//cout << a1%b1 << endl;
 			}
 		}
 	}
@@ -109,17 +109,22 @@ string Calculator::Solve(string formula) {
 
 int main()
 {
-	do {
-		flag = 0;
-		Calculator* calc = new Calculator();
-		string question = calc->MakeFormula();
-	
-		//string ret = calc->Solve("11+22");
-		string ret = calc->Solve(question);
-		//if(!flag){
-			cout << question << endl;
-			cout << ret << endl;//}
-	} while (flag);
+	for (int i = 0; i < 100000; i++) {
+		do {
+			flag = 0;
+			Calculator* calc = new Calculator();
+			string question = calc->MakeFormula();
+
+			//string ret = calc->Solve("11+22");
+			string ret = calc->Solve(question);
+			flag = 0;
+			if (!flag) {
+				cout << question << endl;
+				cout << ret << endl;
+			}
+		} while (flag);
+	}
+
 	
 	
 	getchar();
